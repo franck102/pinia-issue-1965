@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import { useCounter, } from "./stores/counter";
+import TestView from "./TestView.vue"
+import { useCounter, } from "./stores/testStore";
+import {ref} from "vue";
 
-const counter = useCounter()
+const show = ref(true)
 </script>
 
 <template>
-  <p>The counter is at {{ counter.n }}</p>
-  <button @click="counter.n++">Increment</button>
-  <button @click="counter.n--">Decrement</button>
-  <button @click="counter.n = 0">Reset</button>
+  <div><input type="checkbox" v-model="show" :value="true" name="show" checked>
+  Show / Hide test component</div>
+
+  <template v-if="show">
+    <test-view></test-view>
+  </template>
+
 </template>
